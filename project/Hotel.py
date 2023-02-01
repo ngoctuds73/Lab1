@@ -5,11 +5,13 @@ class Hotel:
         self.rooms = []
         self.guests = 0
 
-    def find_room(self, rooms, room_number):
+    @staticmethod
+    def find_room(rooms, room_number):
         return list(filter(lambda room: room.number == room_number, rooms))[0]
 
-    def from_stars(self, stars_count: int):
-        return f"{self.stars_count} stars Hotel"
+    @staticmethod
+    def from_stars(cls, stars_count: int):
+        return cls(f"{stars_count} stars Hotel")
 
     def add_room(self, room):
         self.rooms.append(room)
@@ -32,6 +34,3 @@ class Hotel:
         print(f"Hotel {self.name} has {self.guests} total guests")
         print(f"Free rooms: {', '.join([str(i) for i in self.rooms if not i.is_taken])}")
         print(f"Taken rooms: {', '.join([str(i) for i in self.rooms if i.is_taken])}")
-
-
-
