@@ -10,14 +10,17 @@ class Store:
     def __repr__(self):
         return f"{self.name} of type {self.type} with capacity {self.capacity}"
 
-    def can_add_item(self, count:int , capacity: int):
+    @staticmethod
+    def can_add_item(count, capacity):
         return count < capacity
 
-    def can_remove_item(self, items, item_name: str, amount: int):
+    @staticmethod
+    def can_remove_item(items, item_name, amount):
         return item_name in items and amount <= items[item_name]
 
-    def from_size(self, name, type, size):
-        return self(name, type, size // 2)
+    @classmethod
+    def from_size(cls, name, type, size):
+        return cls(name, type, size // 2)
 
     def add_item(self, item):
         if not self.can_add_item(self.items_count, self.capacity):
